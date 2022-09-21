@@ -12,10 +12,7 @@ jobs:
         with:
           path: ~/.npm
           key: buildCache
-      - name: nodeJS
-        uses: actions/setup-node@v1
-        with:
-          node-version: "16.x"
+      - run: npm --version
       - run: npm ci
       - run: npm test -- --coverage
         env:

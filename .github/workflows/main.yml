@@ -7,13 +7,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Cache
+        uses: actions/cache@v3.0.8
+        with:
+          path: ~/.npm
+          key: buildCache
       - name: nodeJS
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - run: npm ci
       - run: npm test -- --coverage
         env:
           CI: true
-      
-      
+      - name: Upload code coverage
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: codecoverage
+          path: coverage
+      - name: build
+        run: npm run build
+      - name: Upload build files
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: build
+          path: build

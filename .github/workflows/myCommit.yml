@@ -45,6 +45,7 @@ jobs:
       run: ls -la
     - name: deploy to surge
       run: npx surge --project ‘build/’ –-domain melted-chickens.surge.sh
+      env:
         SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
         SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 

@@ -42,8 +42,6 @@ jobs:
       with:
         name: build
     - name: deploy to surge
-      run: ls -la
-    - name: deploy to surge
       run: npx surge --project . –-domain pathetic-finger.surge.sh
       env:
         SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
